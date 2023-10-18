@@ -8,6 +8,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SpringBootTest
 public class EmployeeServiceTest {
 
@@ -26,4 +29,19 @@ public class EmployeeServiceTest {
        // Mockito.when(employee).then(mockEmp);
 
     }
+    @Test
+    void TestGetEmployies(){
+       List employies= Arrays.asList(Employee.build(101,"Dilip",35,"dilip.tech@ibm.com",5600000),Employee.build(102,"Dilip",35,"dilip.tech@ibm.com",56000003));
+        Mockito.when(employeeService.getEmployies()).thenReturn(employies);
+
+        List actualemp=employeeService.getEmployies();
+        org.assertj.core.api.Assertions.assertThat(actualemp).isNotNull();
+        org.assertj.core.api.Assertions.assertThat(actualemp.size()).isEqualTo(2);
+        //Assertions.assertEquals(employies,actualemp);
+        Assertions.assertArrayEquals(actualemp.toArray(),employies.toArray());
+
+        // Mockito.when(employee).then(mockEmp);
+
+    }
+
 }
