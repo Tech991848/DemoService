@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class EmployeeServiceTest {
+ class EmployeeServiceTest {
 
 
     @Mock Employee employee;
@@ -26,7 +26,6 @@ public class EmployeeServiceTest {
 
         Employee actualemp=employeeService.saveEmployee(emp);
         Assertions.assertEquals(emp,actualemp);
-       // Mockito.when(employee).then(mockEmp);
 
     }
     @Test
@@ -35,13 +34,8 @@ public class EmployeeServiceTest {
         Mockito.when(employeeService.getEmployies()).thenReturn(employies);
 
         List actualemp=employeeService.getEmployies();
-        org.assertj.core.api.Assertions.assertThat(actualemp).isNotNull();
-        org.assertj.core.api.Assertions.assertThat(actualemp.size()).isEqualTo(2);
-        //Assertions.assertEquals(employies,actualemp);
+        org.assertj.core.api.Assertions.assertThat(actualemp).hasSize(2);
         Assertions.assertArrayEquals(actualemp.toArray(),employies.toArray());
-
-        // Mockito.when(employee).then(mockEmp);
-
     }
 
 }
