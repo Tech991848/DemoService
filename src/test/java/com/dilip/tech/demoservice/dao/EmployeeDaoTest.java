@@ -14,7 +14,7 @@ import java.util.List;
 @DataJpaTest
 @AutoConfigureTestDatabase
 @ActiveProfiles("devtest")
-public class EmployeeDaoTest {
+ class EmployeeDaoTest {
 
     @Autowired
     EmployeeRespository employeeRespository;
@@ -31,10 +31,8 @@ Assertions.assertThat(actualData).isNotNull();
     employeeRespository.save(employee1);
     Employee employee2=Employee.build(203,"sandeep Singh",33,"candy.tech@g.com",35666655);
     employeeRespository.save(employee2);
-
     List empl=employeeRespository.findAll();
-    Assertions.assertThat(empl).isNotNull();
-    Assertions.assertThat(empl.size()).isEqualTo(2);
+    Assertions.assertThat(empl).isNotNull().hasSize(2);
 }
 
 }
